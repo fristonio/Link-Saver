@@ -37,7 +37,7 @@
 		$query="CREATE TABLE users(
 				uid int NOT NULL AUTO_INCREMENT,
 				username varchar(30) NOT NULL,
-				password varchar(50) NOT NULL,
+				password varchar(124) NOT NULL,
 				email varchar(50) NOT NULL,
 				UNIQUE (email),
 				PRIMARY KEY (uid));";

@@ -122,6 +122,9 @@ body{
 	background: #DCFCC4;
 	margin:0 2vw;
 	border: 2px green solid;
-	border-radius: 5%;
+	border-radius: 10px;
 	position: fixed;
+	z-index: 800;
+	margin:0 10vw;
+	width: 80vw;
 }

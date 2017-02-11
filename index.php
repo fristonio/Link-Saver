@@ -1,19 +1,19 @@
 <?php  
-	include 'showerror.php';
+	include './showerror.php';
 	$nameErr=$emailErr=$passErr='';
 	$SeeError=0;
+	function sanitize($data) {
+		  $data = trim($data);
+		  $data = stripslashes($data);
+		  $data = htmlspecialchars($data);
+		  return $data;
+		}
 	if (isset($_POST["reg-submit"])) {
 		$host="localhost";
 		$user="root";
 		$cpass="Pathak@123";
 		$dbname="savelink";
 
-		function sanitize($data) {
-		  $data = trim($data);
-		  $data = stripslashes($data);
-		  $data = htmlspecialchars($data);
-		  return $data;
-		}
 		$name=$email=$pass='';
 
 		$conn= new mysqli($host,$user,$cpass,$dbname);
@@ -66,19 +66,84 @@
 					echo "<div class='phperror'>Correct the problem with the form submitted</div>";
 					echo "<script>setTimeout(function(){
 						document.getElementById('register-nav').click();
-						$('.phperror').delay(2000).fadeOut();},500);</script>";
+						$('.phperror').delay(2000).fadeOut();},1500);</script>";
 				}		
 		}
 	}
  ?>
 
 <?php 
-	
+	$emailerror='';
+	$email=$pass='';
+	$error=$validate=0;
+	if (isset($_POST["log-submit"])) {
+		$host="localhost";
+		$user="root";
+		$cpass="Pathak@123";
+		$dbname="savelink";
+
+		$conn= new mysqli($host,$user,$cpass,$dbname);
+		if($conn->connect_error){
+			die ("<div class='phperror'>Sorry the connection to database failed  :  ".$conn->connect_error."</div>");
+		}
+		else{
+			$email=sanitize($_POST["email"]);
+			$pass=hash("sha256",sanitize($_POST["pass"]));
+			echo "<script>setTimeout(function(){console.log(".$pass.");},1000);</script>";
+			if (empty($email)) {
+					$emailerror="Email req ... No yahoo plz...!!";
+					$error=1;
+			}
+			else{
+				if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+					$emailerror = "Don't u know the format of email ..."; 
+					$error=1;
+				}
+			}
+
+			if($error==0){
+				$sql="SELECT * FROM users";
+				$result=$conn->query($sql);
+				if(!$result){
+					die("Cannot get the required information from the database");
+				}
+				else{
+					while($row=$result->fetch_assoc()){
+						if ($email==$row["email"] and $pass==$row["password"]) {
+							$validate=1;
+							session_start();
+							$_SESSION["user"]=$row["username"];
+							$_SESSION["email"]=$row["email"];
+							$_SESSION["password"]=$row["password"];
+							header("location:dashboard.php");
+							setcookie("username", $row["username"], time() + (86400 * 30), "/");
+						}
+					}
+					if ($validate==0) {
+						echo "<div class='phperror'>Sorry the username and password cannot be validated  .... Try again</div>";
+						echo "<script>setTimeout(function(){
+							document.getElementById('login-nav').click();
+							$('.phperror').delay(2000).fadeOut();},1500);</script>";
+						}
+				}
+			}
+			else{
+				//echo "<div class='phperror'>Correct the problem with the form submitted</div>";
+				echo "<script>setTimeout(function(){
+					document.getElementById('login-nav').click();
+					$('.phperror').delay(2000).fadeOut();},1500);</script>";
+			}	
+
+		}
+
+	}	
+
  ?>
 <html>
 	<head>
 		<title>Linksaver</title>
 		<link rel="stylesheet" href="./style.css">
+		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
 	</head>
 	<body>
 		<!-- Main div is for login and register purpose -->
@@ -99,7 +164,7 @@
 				<div class="login">
 					<div>
 						<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" id="log-form" method="post">
-							<input type="email" placeholder="user@example.com" name="email" ><br>
+							<input type="email" placeholder="user@example.com" name="email"><?php echo "<span class='error'>*".$emailerror."</span>"; ?><br>
 							<input type="password" placeholder="*****" name="pass"><br>
 							<input type="submit" value="Submit" name="log-submit"><br>
 						</form>
