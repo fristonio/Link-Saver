@@ -1,0 +1,104 @@
+*{
+	margin: 0;
+	padding:0;
+}
+body{
+	overflow-x: hidden;
+}
+#maindiv{
+	width: 100vw;
+	height: 100vh;
+	perspective: 1000px;
+}
+.navpage{
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	display: flex;
+	transform-style: preserve-3d;
+	perspective: 700px;
+
+}
+.login-nav{
+	height: 100vh;
+	width: 50vw;
+	background: blue;
+	transform-origin: 0% 50%;
+	transition: transform 1s;
+	transform-style: preserve-3d;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.register-nav{
+	height: 100vh;
+	width: 50vw;
+	transform-origin: 100% 50%;
+	transition: transform 1s;
+	transform-style: preserve-3d;
+	background: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.log-reg{
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	display: none;
+	}
+.login{
+	height: 100vh;
+	width: 50%;
+	background: tomato;
+	display: none;
+	position: relative;
+	float: left;
+}
+.login div{
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.login div form{
+	text-align: center;
+}
+.login input{
+	margin: 15px 0;
+}
+.register{
+	height: 100vh;
+	width: 50%;
+	background: darkgrey;
+	display: none;
+	position: relative;
+	float: right;
+}
+.register div{
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.register div form{
+	text-align: center;
+}
+.register input{
+	margin: 15px 0;
+}
+#preloader{
+	height: 100vh;
+	width: 100vw;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	background: white;
+	position: fixed;
+}
+#preloader img{
+	height: 70px;
+	width: auto;
+}
