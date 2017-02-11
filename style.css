@@ -2,6 +2,8 @@
 	margin: 0;
 	padding:0;
 }
+
+/*Style for the login/register page of the app*/
 body{
 	overflow-x: hidden;
 }
@@ -101,4 +103,25 @@ body{
 #preloader img{
 	height: 70px;
 	width: auto;
+}
+.phperror{
+	padding: 20px;
+	text-align: center;
+	background: #FDCECE;
+	margin:0 10vw;
+	border: 2px red solid;
+	border-radius: 10px;
+	position: fixed;
+	color: black;
+	z-index: 800;
+	width: 80vw;
+}
+.phpsuccess{
+	padding: 20px;
+	text-align: center;
+	background: #DCFCC4;
+	margin:0 2vw;
+	border: 2px green solid;
+	border-radius: 5%;
+	position: fixed;
 }

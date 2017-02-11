@@ -8,7 +8,7 @@
 		die ("Sorry the connection failed  :  ".$conn->connect_error);
 	}
 	else{
-		echo "Connection to database successfull  <br>  ";
+		echo "Connection to mysql successful  <br>  ";
 		$query="CREATE DATABASE savelink;";
 		$result=$conn->query($query);
 		if ($result==TRUE) {
