@@ -31,7 +31,7 @@
 				lid int not null auto_increment,
 				email varchar(30) NOT NULL,
 				link varchar(60) NOT NULL,
-				UNIQUE (email),
+				description TEXT,
 				PRIMARY KEY (lid)
 				);";
 		$query="CREATE TABLE users(

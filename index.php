@@ -116,7 +116,8 @@
 							$_SESSION["email"]=$row["email"];
 							$_SESSION["password"]=$row["password"];
 							header("location:dashboard.php");
-							setcookie("username", $row["username"], time() + (86400 * 30), "/");
+							setcookie("username", $row["username"], time() + (86400 * 30));
+							setcookie("email", $row["email"], time() + (86400 * 30));
 						}
 					}
 					if ($validate==0) {
@@ -139,12 +140,15 @@
 	}	
 
  ?>
+
 <html>
 	<head>
 		<title>Linksaver</title>
 		<link rel="stylesheet" href="./style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
 	</head>
+
 	<body>
 		<!-- Main div is for login and register purpose -->
 		<div class="maindiv">
@@ -183,7 +187,6 @@
 				</div>
 			</div>
 		</div>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="./script.js"></script>
 	</body>
 </html>
