@@ -57,17 +57,17 @@ body{
 	position: relative;
 	float: left;
 }
-.login div{
+.logindiv{
 	height: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
+.input-group{
+	margin : 15px 0;
+}
 .login div form{
 	text-align: center;
-}
-.login input{
-	margin: 15px 0;
 }
 .register{
 	height: 100vh;
@@ -77,7 +77,7 @@ body{
 	position: relative;
 	float: right;
 }
-.register div{
+.registerdiv{
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -138,11 +138,9 @@ body{
 	display: flex;
 	justify-content: center;
 	border-radius: 5px;
-}
-#link-form{
-	display: flex;
-}
-
+	flex-direction: column;
+	align-items: center;	
+}	
 
 
 body::-webkit-scrollbar {

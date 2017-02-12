@@ -70,13 +70,18 @@
  		</nav>
 	
  		<div id="add-links" class="container">
+ 			<h3>Enter the links you want to save</h3>
  			<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" id="link-form" method="post">
- 				<div class="input">
- 					Link : <input type="text" name="link" required><br>
- 					Description : <input type="text" name="description">
+ 				<div class="input-group">
+ 					<label for="">Link</label>
+ 					<input type="text" name="link" required class="form-control">
  				</div>
- 				<div class="button">
- 					<input type="submit" value="Submit" name="link-submit">
+ 				<div class="input-group">
+ 					<label for="">Description</label>
+ 					<input type="text" name="description" class="form-control">
+ 				</div>
+ 				<div class="input-group">
+ 					<input type="submit" value="Submit" name="link-submit" class="form-control btn btn-danger">
  				</div>
  				
  			</form>

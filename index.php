@@ -144,9 +144,12 @@
 <html>
 	<head>
 		<title>Linksaver</title>
-		<link rel="stylesheet" href="./style.css">
+		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="./style.css">
 	</head>
 
 	<body>
@@ -166,22 +169,39 @@
 			</div>
 			<div class="log-reg">
 				<div class="login">
-					<div>
+					<div class="logindiv">
 						<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" id="log-form" method="post">
-							<input type="email" placeholder="user@example.com" name="email"><?php echo "<span class='error'>*".$emailerror."</span>"; ?><br>
-							<input type="password" placeholder="*****" name="pass"><br>
-							<input type="submit" value="Submit" name="log-submit"><br>
+								<div class="input-group">
+									<label for=""><?php echo "<span class='error'>".$emailerror."</span>"; ?></label>
+									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+									<input type="email" placeholder="user@example.com" name="email" class="form-control" >
+								</div>
+								<div class="input-group">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+									<input type="password" placeholder="*****" name="pass" class="form-control" id="password">
+								</div>
+								<div class="input-group">
+									<input type="submit" value="Submit" name="log-submit" class="form-control btn btn-info">
+								</div>
 						</form>
 					</div>
 				</div>
 
 				<div class="register">
-					<div>
+					<div class="registerdiv">
 						<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" id="reg-form" method="post">
-							<input type="text" name="name" placeholder="Username"><?php echo "<span class='error'>*".$nameErr."</span>"; ?><br>
-							<input type="email" placeholder="user@example.com" name="email"><?php echo "<span class='error'>*".$emailErr."</span>"; ?><br>
-							<input type="password" placeholder="*****" name="pass"><br>
-							<input type="submit" value="Submit" name="reg-submit"><br>
+							<div class="input-group">
+								<input type="text" name="name" placeholder="Username" class="form-control"><?php echo "<span class='error'>".$nameErr."</span>"; ?>
+							</div>
+							<div class="input-group">
+								<input type="email" placeholder="user@example.com" name="email" class="form-control"><?php echo "<span class='error'>".$emailErr."</span>"; ?>
+							</div>
+							<div class="input-group">
+								<input type="password" placeholder="*****" name="pass" class="form-control">
+							</div>
+							<div class="input-group">
+								<input type="submit" value="Submit" name="reg-submit" class="form-control btn btn-success">
+							</div>
 						</form>
 					</div>
 				</div>
