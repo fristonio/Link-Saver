@@ -161,15 +161,16 @@
 			</div>
 			<div class="navpage">
 				<div class="login-nav">
-					<button id="login-nav">Login</button>
+					<button id="login-nav"><h3>Login</h3></button>
 				</div>
 				<div class="register-nav">
-					<button id="register-nav">Register</button>
+					<button id="register-nav"><h3>Register</h3></button>
 				</div>
 			</div>
 			<div class="log-reg">
 				<div class="login">
 					<div class="logindiv">
+						<h1>Login</h1>
 						<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" id="log-form" method="post">
 								<div class="input-group">
 									<label for=""><?php echo "<span class='error'>".$emailerror."</span>"; ?></label>
@@ -189,6 +190,7 @@
 
 				<div class="register">
 					<div class="registerdiv">
+						<h1>Register</h1>
 						<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" id="reg-form" method="post">
 							<div class="input-group">
 								<input type="text" name="name" placeholder="Username" class="form-control"><?php echo "<span class='error'>".$nameErr."</span>"; ?>
