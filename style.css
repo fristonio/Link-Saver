@@ -65,11 +65,15 @@ body{
 	align-items: center;
 	flex-direction: column;
 }
+.logindiv form{
+	margin:0 35%;
+}
 .logindiv h1{
 	color: #ccc;
 }
 .input-group{
-	margin : 15px 0;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 .login div form{
 	text-align: center;
@@ -178,4 +182,7 @@ body::-webkit-scrollbar-thumb {
 }
 #login-nav h3{
 	vertical-align: middle;
+}
+#mailbtn{
+	text-align: center;
 }

@@ -173,9 +173,8 @@
 						<h1>Login</h1>
 						<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" id="log-form" method="post">
 								<div class="input-group">
-									<label for=""><?php echo "<span class='error'>".$emailerror."</span>"; ?></label>
 									<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-									<input type="email" placeholder="user@example.com" name="email" class="form-control" >
+									<input type="email" placeholder="user@example.com" name="email" class="form-control" ><?php echo "<span class='error'>".$emailerror."</span>"; ?>
 								</div>
 								<div class="input-group">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>

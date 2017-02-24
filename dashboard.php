@@ -4,6 +4,21 @@
 	if (!isset($_SESSION["user"])) {
 		header("location:index.php");
 	}
+	$msg="";
+	require 'PHPMailer/PHPMailerAutoload.php';
+	$mail = new PHPMailer;
+	$mail->isSMTP();
+	$mail->Host = 'smtp.gmail.com';
+	$mail->Port = 587;
+	$mail->SMTPSecure = 'tls';
+	$mail->SMTPAuth = true;
+	$mail->Username = "xm0rtis09@gmail.com";
+	$mail->Password = "Pathak@123";	
+	$mail->setFrom('xm0rtis09@gmail.com', 'Sys_admin');
+	$mail->addAddress($_SESSION["email"]);
+	$mail->Subject = "Links You Saved ..";
+	$mail->isHTML(true);
+	
 	function sanitize($data) {
 		  $data = trim($data);
 		  $data = stripslashes($data);
@@ -46,7 +61,13 @@
 	}
  ?>
 
-
+<?php 
+	$msg.="<html>
+ 	<head>
+ 		 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+ 	</head>
+ 	<body>";
+ ?>
  <html>
  	<head>
  		<title>Dashboard</title>
@@ -64,6 +85,7 @@
      				 <li class="active"><a href="#">DASHBOARD</a></li>
    				</ul>
  			    <ul class="nav navbar-nav navbar-right">
+ 			    	<li><a href="#"><?php echo $_SESSION["email"]; ?></a></li>
  			      <li><a href="./logout.php"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li>
  			    </ul>
  			 </div>
@@ -86,9 +108,20 @@
  				
  			</form>
  		</div>	
-
  		<div id="show-links" class="container">
  			<h2>Saved Links</h2>
+ 			<?php 
+ 				$msg.="<table class='table table-striped'>
+				 <thead>
+			      <tr>
+			        <th>S.No</th>
+			        <th>Link</th>
+			        <th>Description</th>
+			      </tr>
+			    </thead>
+			    <tbody>";
+ 			 ?>
+
  			<table class="table table-striped">
 				 <thead>
 			      <tr>
@@ -121,12 +154,49 @@
 										<td><a href='{$row["link"]}'>".$row["link"]."</a></td>
 										<td>".$row["description"]."</td>
 									</tr>";
+
+								$msg.="<tr>
+										<td>".$row["lid"]."</td>
+										<td><a href='{$row["link"]}'>".$row["link"]."</a></td>
+										<td>".$row["description"]."</td>
+									</tr>";
 							}
 						}
 					}
 				 ?>
 				 </tbody>	
 			 </table>
+			<?php
+				$msg.= "</tbody>	
+			 			</table>
+			 			</body>
+ 						</html>";
+				if (isset($_POST["mailme"])) {
+					/*$to=$_SESSION["email"];
+					$subject = "Saved links on savelinks";
+					$header = "From:xm0rtis09@gmail.com \r\n";
+			        $header .= "Cc:deepeshpathak09@gmail.com \r\n";
+			        $header .= "MIME-Version: 1.0\r\n";
+			        $header .= "Content-type: text/html\r\n";
+
+			        $retval = mail($to,$subject,$msg,$header);
+			        if ($retval==true) {
+			        	echo "<div class='phpsuccess'>Mail sent Successfully </div>";
+			        }
+			        else{
+			        	echo "<div class='phperror'>Mail could not be sent</div>";
+			        }*/
+			        $mail->msgHTML($msg);
+			        if(!$mail->send()) {
+						    echo "<div class='phperror'>Mail could not be sent.".$mail->ErrorInfo."</div>";
+						} else {
+						    echo "<div class='phpsuccess'>Mail sent Successfully </div>";
+						}
+				}
+			 ?>
+			 <form id="mailbtn" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+			 	<input type="submit" class="btn btn-success" name="mailme" value="Mail to Me">
+			 </form>
  		</div>
  		<script>setTimeout(function(){$(".phperror").delay(500).fadeOut();
  										$(".phpsuccess").delay(500).fadeOut();},1500);</script>
