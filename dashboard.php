@@ -148,7 +148,7 @@
 							while ($row=$result->fetch_assoc()) {
 								echo "<tr id=".$row["lid"].">
 										<td>".$sno."</td>
-										<td><a href='{$row["link"]}'>".$row["link"]."</a></td>
+										<td><a href='{$row["link"]}' target='_blank'>".$row["link"]."</a></td>
 										<td>".$row["description"]."</td>
 										<td class='linkdelete'><span class='glyphicon glyphicon-remove'></span></td>
 									</tr>";
