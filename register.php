@@ -1,10 +1,6 @@
 <?php 
 	include 'showerror.php';
-	$host="localhost";
-	$user="root";
-	$pass="Pathak@123";
-	$dbname="savelink";
-
+	require_once './config.php';
 	function sanitize($data) {
 	  $data = trim($data);
 	  $data = stripslashes($data);

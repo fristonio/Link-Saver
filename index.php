@@ -1,5 +1,6 @@
 <?php  
 	include './showerror.php';
+	require_once './config.php';
 	$nameErr=$emailErr=$passErr='';
 	$SeeError=0;
 	function sanitize($data) {
@@ -9,11 +10,6 @@
 		  return $data;
 		}
 	if (isset($_POST["reg-submit"])) {
-		$host="localhost";
-		$user="root";
-		$cpass="Pathak@123";
-		$dbname="savelink";
-
 		$name=$email=$pass='';
 
 		$conn= new mysqli($host,$user,$cpass,$dbname);
@@ -77,11 +73,6 @@
 	$email=$pass='';
 	$error=$validate=0;
 	if (isset($_POST["log-submit"])) {
-		$host="localhost";
-		$user="root";
-		$cpass="Pathak@123";
-		$dbname="savelink";
-
 		$conn= new mysqli($host,$user,$cpass,$dbname);
 		if($conn->connect_error){
 			die ("<div class='phperror'>Sorry the connection to database failed  :  ".$conn->connect_error."</div>");

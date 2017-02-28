@@ -1,5 +1,6 @@
 <?php 
 	include './showerror.php';
+	require_once './config.php';
 	session_start();
 	if (!isset($_SESSION["user"])) {
 		header("location:index.php");
@@ -13,8 +14,8 @@
 	$mail->SMTPSecure = 'tls';
 	$mail->SMTPAuth = true;
 	$mail->Username = "xm0rtis09@gmail.com";
-	$mail->Password = "Pathak@123";	
-	$mail->setFrom('xm0rtis09@gmail.com', 'Sys_admin');
+	$mail->Password = $mailpass;	
+	$mail->setFrom($mailemail, 'Sys_admin');
 	$mail->addAddress($_SESSION["email"]);
 	$mail->Subject = "Links You Saved ..";
 	$mail->isHTML(true);
@@ -28,10 +29,6 @@
 	$linkerr='';
 	//Link Save Form
 	if (isset($_POST["link-submit"])) {
-		$host="localhost";
-		$user="root";
-		$cpass="Pathak@123";
-		$dbname="savelink";
 		$email=$link=$description='';
 
 		$conn=new mysqli($host,$user,$cpass,$dbname);
@@ -133,10 +130,7 @@
 			    <tbody>
  			<!--show links-->
 				<?php 
-					$host="localhost";
-					$user="root";
-					$cpass="Pathak@123";
-					$dbname="savelink";
+					
 					$conn=new mysqli($host,$user,$cpass,$dbname);
 					if ($conn->connect_error) {
 						die ("<div class='phperror'>Sorry the connection to database for showing links failed  :  ".$conn->connect_error."</div>");
