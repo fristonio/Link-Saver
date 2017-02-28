@@ -146,7 +146,7 @@ body{
 	text-align: center;
 }
 #add-links{
-	background: rgba(0,0,0,0.5);
+	background: rgba(0,0,0,0.8);
 	padding: 30px;
 	display: flex;
 	justify-content: center;
@@ -154,7 +154,9 @@ body{
 	flex-direction: column;
 	align-items: center;	
 }	
-
+#add-links{
+	color: white;
+}
 
 body::-webkit-scrollbar {
     width: 1em;
@@ -185,4 +187,7 @@ body::-webkit-scrollbar-thumb {
 }
 #mailbtn{
 	text-align: center;
+}
+.glyphicon-remove{
+	cursor: pointer;
 }

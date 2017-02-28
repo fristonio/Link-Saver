@@ -71,6 +71,7 @@
  		<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
  		<link rel="stylesheet" href="./style.css">
+ 		<script src="./script.js"></script>
  	</head>
  	<body>
  		<nav class="navbar navbar-inverse">
@@ -125,9 +126,10 @@
 			        <th>S.No</th>
 			        <th>Link</th>
 			        <th>Description</th>
+			        <th>Delete</th>
 			      </tr>
 			    </thead>
-			    <tbody>
+			    <tbody id="tablebody">
  			<!--show links-->
 				<?php 
 					
@@ -142,18 +144,21 @@
 							echo "<div class='phperror'>There are no links in the database</div>";
 						}
 						else{
+							$sno=1;
 							while ($row=$result->fetch_assoc()) {
-								echo "<tr>
-										<td>".$row["lid"]."</td>
+								echo "<tr id=".$row["lid"].">
+										<td>".$sno."</td>
 										<td><a href='{$row["link"]}'>".$row["link"]."</a></td>
 										<td>".$row["description"]."</td>
+										<td class='linkdelete'><span class='glyphicon glyphicon-remove'></span></td>
 									</tr>";
 
 								$msg.="<tr>
-										<td>".$row["lid"]."</td>
+										<td>".$sno."</td>
 										<td><a href='{$row["link"]}'>".$row["link"]."</a></td>
 										<td>".$row["description"]."</td>
 									</tr>";
+								$sno+=1;
 							}
 						}
 					}
